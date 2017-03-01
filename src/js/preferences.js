@@ -171,13 +171,16 @@
     function clearRules() {
         chrome.storage.local.get(['blacklist'], function(items) {
             var blacklist = items['blacklist'];
-            blacklist['SITE'] = ['chrome-ui://newtab']
-            chrome.storage.local.set({'blacklist':null});
+            blacklist['PAGE'] = '';
+            blacklist['REGEX'] = '';
+            blacklist['SITE'] = '';
+            console.log(blacklist)
+            chrome.storage.local.set({'blacklist':blacklist});
         });
         notie.alert(1, 'Deleted Rules. Restarting WorldBrain...', 2)
         setTimeout(function() {
-            chrome.runtime.reload()
-        }, 2000);
+           chrome.runtime.reload()
+         }, 2000);
     }
 
     function clearHistory() {
