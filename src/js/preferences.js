@@ -1,8 +1,8 @@
 (function() {
     var allPageDisplay = null;
 
-    // add element to the custom blacklist 
-    //TODO: check if element is already there before adding. 
+    // add element to the custom blacklist
+    //TODO: check if element is already there before adding.
     var add = function(type, content) {
         var tab = document.getElementById("blacklist_tbl")
         var row = tab.insertRow()
@@ -33,7 +33,7 @@
 
 
     document.getElementById("restart_text").onclick = restartPlugin
-    
+
     function restartPlugin(){
           chrome.runtime.reload()
         };
@@ -52,7 +52,7 @@
         for(i in pages) {
             var thisRow = document.createElement("tr")
             var colOne = document.createElement("td")
-            colOne.innerText =  cutString(pages[i].title) 
+            colOne.innerText =  cutString(pages[i].title)
             var colTwo = document.createElement("td")
             colTwo.innerHTML = cutString(pages[i].url).link(pages[i].url)
             thisRow.appendChild(colOne)
@@ -172,7 +172,7 @@
         chrome.storage.local.get(['blacklist'], function(items) {
             var blacklist = items['blacklist'];
             blacklist['SITE'] = ['chrome-ui://newtab']
-            chrome.storage.local.set({'blacklist':blacklist});
+            chrome.storage.local.set({'blacklist':null});
         });
         notie.alert(1, 'Deleted Rules. Restarting WorldBrain...', 2)
         setTimeout(function() {
@@ -223,5 +223,3 @@
     };
 
 })();
-
-
